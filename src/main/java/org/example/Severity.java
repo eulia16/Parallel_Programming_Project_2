@@ -7,4 +7,6 @@ public enum Severity {
     MODERATE,
     SEVERE;
 
+
+    public final static Severity[] severities = values();
 }

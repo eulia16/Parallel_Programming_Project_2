@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public enum SingletonConcurrentHashmap {
     INSTANCE;
-    private ConcurrentHashMap<, Room> concurrentHashMap;
+    private ConcurrentHashMap<NameAndDOB, MedicalRecord> concurrentHashMap;
 
     SingletonConcurrentHashmap(){
         this.concurrentHashMap = new ConcurrentHashMap<>();

@@ -1,4 +1,12 @@
 package org.example;
 
-public record MedicalRecord(Severity severity, int nurseID ,int height, int weight , String[] testPerformed, String prevMedicalHistory ) {
+import java.util.Objects;
+
+public record MedicalRecord(Severity severity, int nurseID , int height, int weight , String[] testPerformed, String prevMedicalHistory ) {
+     public MedicalRecord{
+         Objects.requireNonNull(severity);
+         Objects.requireNonNull(nurseID);
+
+    }
+
 }

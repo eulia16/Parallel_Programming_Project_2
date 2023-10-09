@@ -2,12 +2,13 @@ package org.example;
 
 import org.openjdk.jmh.annotations.*;
 
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 
-public class LibraryConcurrentHashMap implements Runnable{
+public class LibraryConcurrentHashMap{
 
     @Param({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
     private static Integer iteratorKey;
@@ -18,32 +19,27 @@ public class LibraryConcurrentHashMap implements Runnable{
         //initialize the ccMap with some data
         // Generate data and put it into the ConcurrentHashMap
         for (int i = iteratorKey; i <= Constants.NUM_RANDOM_DATA; i++) {
-            Room room = new Room(i);
-            Constants.ccMap.put(i, room);
+            MedicalRecord record = new MedicalRecord( Severity.severities[ThreadLocalRandom.current().nextInt(Severity.values().length)],  1,-1,-1,null, null);
+            NameAndDOB temp = new NameAndDOB("John Hancock", "11/08/2001");
+            Constants.ccMap.put(temp, new ArrayList<>());
+            Constants.ccMap.get(temp).add(record);
         }
-
-        //then create and submit some read operations for the threads to handle
-        for(int i=0; i<Constants.NUM_THREADS; ++i) {
-            //Constants.clients.submit();
-        }
-
-
 
     }
 
-    public static Room read(Integer key){
+    public static ArrayList<MedicalRecord> read(Integer key){
         return Constants.ccMap.get(key);
     }
 
-    public static void write(Integer key, Room value){ Constants.ccMap.put(key, value);}
+    public static void write(NameAndDOB key, MedicalRecord value){
+        if(Constants.ccMap.containsKey(key))
+            Constants.ccMap.get(key).add(value);
+        else{
+            ArrayList<MedicalRecord> temp = new ArrayList();
+            Constants.ccMap.put(key, temp);
+            Constants.ccMap.get(key).add(value);
+        }
 
-
-    @Override
-    public void run(){
-
-
-
-    }
-
+        }
 
 }
