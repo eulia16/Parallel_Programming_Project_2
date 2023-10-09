@@ -1,0 +1,18 @@
+//comments for designing my own concurrent hashmap
+
+//locking scheme
+
+
+//synchronization scheme
+
+
+//comments regarding design of data structure
+
+
+
+//design will be changed now, to an electronic health system, where concurrent reads are to be
+//expected at high velocity, and writes not as often but still require some sort of efficiency
+
+//both hashmaps will store a name and a DOB as a key and a list of records as the values, then when
+//reading the values, the name and DOB must match to return the ordered list, and then updating values
+//when writing
