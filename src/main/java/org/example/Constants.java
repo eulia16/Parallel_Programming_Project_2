@@ -21,4 +21,11 @@ public class Constants {
     public static final long READER_WAIT_TIME= 0L;
     public static final int READER_WAIT_TIME_NANOSECONDS = 100_000;
 
+    public static final String[] listOfNames = {"Emma Johnson", "Liam Smith", "Olivia Davis", "Noah Anderson", "Ava Brown", "Isabella Wilson", "Sophia Martinez", "Mia Taylor", "Charlotte White", "Amelia Harris"};
+
+    public static final String[] listOfDOBs = {"15/04/1990", "23/07/1985", "09/12/2000", "30/05/1978", "18/09/1995", "07/03/1982", "12/11/1999", "26/08/1972", "03/06/1988", "21/10/2005"};
+
+
+
+
 }

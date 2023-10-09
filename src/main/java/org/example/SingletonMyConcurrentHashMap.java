@@ -1,11 +1,12 @@
 package org.example;
 
 
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 public enum SingletonMyConcurrentHashMap {
     INSTANCE;
-    private MyConcurrentHashMap<Integer, Room> concurrentHashMap;
+    private MyConcurrentHashMap<NameAndDOB, ArrayList<MedicalRecord>> concurrentHashMap;
 
     SingletonMyConcurrentHashMap(){
         this.concurrentHashMap = new MyConcurrentHashMap<>();

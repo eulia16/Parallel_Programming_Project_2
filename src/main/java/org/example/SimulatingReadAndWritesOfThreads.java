@@ -1,9 +1,6 @@
 package org.example;
 
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Threads;
+import org.openjdk.jmh.annotations.*;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
@@ -21,9 +18,12 @@ public class SimulatingReadAndWritesOfThreads {
 
 
 
+    @Benchmark
+    //we'd never benchmark this but its a test
     public void simulateCCHSMPReads(){
-
-
+        LibraryConcurrentHashMap s = new LibraryConcurrentHashMap();
+        s.setup();
+        System.out.println(Constants.ccMap);
     }
 
     public void simulateCCHSMPWrites(){
