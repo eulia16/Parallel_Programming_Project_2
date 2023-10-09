@@ -19,9 +19,6 @@ import java.util.concurrent.*;
 public class App 
 {
 
-    static ConcurrentHashMap<Integer, Room> activeUserIdsToRoomCCMP;
-    static MyConcurrentHashMap<Integer, Room> activeUserIdsToRoomMyCCMP;
-
     //read chapter 6-7-8 to ensure this is the type of thread pool we want
     static ExecutorService clients =  Executors.newFixedThreadPool(Constants.NUM_THREADS);
 

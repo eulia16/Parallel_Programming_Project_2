@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba4b1da7-0010-4710-a7a3-dccb1dbb0d4d" name="Changes" comment="" />
+    <list default="true" id="ba4b1da7-0010-4710-a7a3-dccb1dbb0d4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/SimulatingReadAndWritesOfThreads.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LibraryConcurrentHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LibraryConcurrentHashMap.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +78,8 @@
       <updated>1696459890403</updated>
       <workItem from="1696459972457" duration="1216000" />
       <workItem from="1696511936227" duration="1855000" />
-      <workItem from="1696696631296" duration="7388000" />
+      <workItem from="1696696631296" duration="8327000" />
+      <workItem from="1696787619069" duration="948000" />
     </task>
     <servers />
   </component>

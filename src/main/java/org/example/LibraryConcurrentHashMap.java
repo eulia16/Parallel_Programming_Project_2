@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 public class LibraryConcurrentHashMap {
-    private ConcurrentHashMap<Integer, Room> ccMap;
-    @Param({"1", "2"})
-    private Integer Key1, Key2;
+    private static ConcurrentHashMap<Integer, Room> ccMap;
+    @Param({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
+    private Integer iteratorKey;
 
     private Room room;
 
@@ -29,17 +29,21 @@ public class LibraryConcurrentHashMap {
     }
 
     @Benchmark
+    @Fork(value = 1, warmups = 1)
+    @Threads(Constants.NUM_THREADS)
     @BenchmarkMode(Mode.Throughput)
     public Room read(){
-        return this.ccMap.get(Key1);
+        return this.ccMap.get(iteratorKey);
     }
 
     @Benchmark
+    @Fork(value = 1, warmups = 1)
+    @Threads(Constants.NUM_THREADS)
     @BenchmarkMode(Mode.Throughput)
-    public Integer write(){
+    public Boolean write(){
         //this.ccMap.put(ThreadLocalRandom.current().nextInt(Constants.NUM_RANDOM_DATA), new Room(1));
         this.ccMap.put(1, new Room(1));
-        return ThreadLocalRandom.current().nextInt(Constants.NUM_THREADS);
+        return true;
     }
 
 
