@@ -8,11 +8,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 
+
 public class LibraryConcurrentHashMap{
-
-//    @Param({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
-//    private static Integer iteratorKey;
-
 
     @Setup
     public void setup(){
@@ -20,18 +17,20 @@ public class LibraryConcurrentHashMap{
         // Generate data and put it into the ConcurrentHashMap
         for (int i = 0; i <= Constants.NUM_RANDOM_DATA; i++) {
             MedicalRecord record = new MedicalRecord( Severity.severities[ThreadLocalRandom.current().nextInt(Severity.values().length)],  1,-1,-1,null, null);
-            int randomName, randomDOB;
-            randomName = ThreadLocalRandom.current().nextInt(Constants.listOfNames.length);
-            randomDOB = ThreadLocalRandom.current().nextInt(Constants.listOfDOBs.length);
+            int randomName =0, randomDOB=0;
+            if( (i & 1) == 0) {
+                randomName = ThreadLocalRandom.current().nextInt(Constants.listOfNames.length);
+                randomDOB = ThreadLocalRandom.current().nextInt(Constants.listOfDOBs.length);
+            }
             NameAndDOB temp = new NameAndDOB(Constants.listOfNames[randomName], Constants.listOfDOBs[randomDOB]);
             Constants.ccMap.put(temp, new ArrayList<>());
             Constants.ccMap.get(temp).add(record);
         }
-        System.out.println(Constants.ccMap);
+        //System.out.println(Constants.ccMap);
 
     }
 
-    public static ArrayList<MedicalRecord> read(Integer key){
+    public static ArrayList<MedicalRecord> read(NameAndDOB key){
         return Constants.ccMap.get(key);
     }
 

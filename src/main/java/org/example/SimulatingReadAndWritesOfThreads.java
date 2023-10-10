@@ -16,13 +16,19 @@ Then in each method it will have the look of threads either read or writer/use t
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class SimulatingReadAndWritesOfThreads {
 
+    //maybe create a statc subclass that holds a few random NameandDOB objects for reading?
+    private static class someData{
 
+
+    }
 
     @Benchmark
     //we'd never benchmark this but its a test
     public void simulateCCHSMPReads(){
         LibraryConcurrentHashMap s = new LibraryConcurrentHashMap();
         s.setup();
+
+        LibraryConcurrentHashMap.read()
         System.out.println(Constants.ccMap);
     }
 
