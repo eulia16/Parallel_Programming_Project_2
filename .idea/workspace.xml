@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ba4b1da7-0010-4710-a7a3-dccb1dbb0d4d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LibraryConcurrentHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LibraryConcurrentHashMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MedicalRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MedicalRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SimulatingReadAndWritesOfThreads.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SimulatingReadAndWritesOfThreads.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +86,16 @@
       <workItem from="1696787619069" duration="948000" />
       <workItem from="1696864157176" duration="1039000" />
       <workItem from="1696868367460" duration="10821000" />
-      <workItem from="1696957591643" duration="627000" />
+      <workItem from="1696957591643" duration="2016000" />
+      <workItem from="1697302255941" duration="8873000" />
+      <workItem from="1697409668868" duration="3984000" />
+      <workItem from="1697733066795" duration="2994000" />
+      <workItem from="1697992963396" duration="635000" />
+      <workItem from="1697993727113" duration="599000" />
+      <workItem from="1698073720567" duration="594000" />
+      <workItem from="1698152152083" duration="191000" />
+      <workItem from="1698161649963" duration="768000" />
+      <workItem from="1698162891066" duration="188000" />
     </task>
     <servers />
   </component>

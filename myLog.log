@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-10-24T12:56:56.013352Z</date>
+  <millis>1698152216013</millis>
+  <nanos>352000</nanos>
+  <sequence>0</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>36</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:57:06.234349Z</date>
+  <millis>1698152226234</millis>
+  <nanos>349000</nanos>
+  <sequence>1</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>28</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:57:16.280445Z</date>
+  <millis>1698152236280</millis>
+  <nanos>445000</nanos>
+  <sequence>2</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>27</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:57:26.329949Z</date>
+  <millis>1698152246329</millis>
+  <nanos>949000</nanos>
+  <sequence>3</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>31</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:57:36.373080Z</date>
+  <millis>1698152256373</millis>
+  <nanos>80000</nanos>
+  <sequence>4</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>36</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:57:46.424319Z</date>
+  <millis>1698152266424</millis>
+  <nanos>319000</nanos>
+  <sequence>5</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>26</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:57:56.490646Z</date>
+  <millis>1698152276490</millis>
+  <nanos>646000</nanos>
+  <sequence>6</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>29</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:58:06.525989Z</date>
+  <millis>1698152286525</millis>
+  <nanos>989000</nanos>
+  <sequence>7</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>31</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:58:16.545623Z</date>
+  <millis>1698152296545</millis>
+  <nanos>623000</nanos>
+  <sequence>8</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>23</thread>
+  <message>Logger Initialized</message>
+</record>
+<record>
+  <date>2023-10-24T12:58:26.595406Z</date>
+  <millis>1698152306595</millis>
+  <nanos>406000</nanos>
+  <sequence>9</sequence>
+  <logger>MyLogger</logger>
+  <level>INFO</level>
+  <class>org.example.SimulatingReadAndWritesOfThreads$SomeDataToBeRead</class>
+  <method>doSetup</method>
+  <thread>27</thread>
+  <message>Logger Initialized</message>
+</record>
+</log>

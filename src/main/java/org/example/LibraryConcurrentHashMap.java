@@ -15,34 +15,50 @@ public class LibraryConcurrentHashMap{
     public void setup(){
         //initialize the ccMap with some data
         // Generate data and put it into the ConcurrentHashMap
-        for (int i = 0; i <= Constants.NUM_RANDOM_DATA; i++) {
-            MedicalRecord record = new MedicalRecord( Severity.severities[ThreadLocalRandom.current().nextInt(Severity.values().length)],  1,-1,-1,null, null);
+        for (int i = 0; i < Constants.NUM_RANDOM_DATA; i++) {
+            MedicalRecord record = MedicalRecord.generateRandomMedicalRecord();
             int randomName =0, randomDOB=0;
-            if( (i & 1) == 0) {
-                randomName = ThreadLocalRandom.current().nextInt(Constants.listOfNames.length);
-                randomDOB = ThreadLocalRandom.current().nextInt(Constants.listOfDOBs.length);
-            }
+
+            randomName = ThreadLocalRandom.current().nextInt(Constants.listOfNames.length);
+            randomDOB = ThreadLocalRandom.current().nextInt(Constants.listOfDOBs.length);
+
             NameAndDOB temp = new NameAndDOB(Constants.listOfNames[randomName], Constants.listOfDOBs[randomDOB]);
+            //put the randomly generated humans in the list
+            Constants.nameAndDOBArray[i] = temp;
+            //same but add them to the hashmap now
             Constants.ccMap.put(temp, new ArrayList<>());
             Constants.ccMap.get(temp).add(record);
         }
-        //System.out.println(Constants.ccMap);
 
     }
 
-    public static ArrayList<MedicalRecord> read(NameAndDOB key){
+
+    public  ArrayList<MedicalRecord> read(NameAndDOB key){
         return Constants.ccMap.get(key);
     }
 
-    public static void write(NameAndDOB key, MedicalRecord value){
-        if(Constants.ccMap.containsKey(key))
-            Constants.ccMap.get(key).add(value);
-        else{
-            ArrayList<MedicalRecord> temp = new ArrayList();
-            Constants.ccMap.put(key, temp);
-            Constants.ccMap.get(key).add(value);
+    public boolean write(NameAndDOB key, MedicalRecord value){
+
+
+
+        //makes me run out of memory cause the hashmap gets too big with all the simulated data. we'll just overwrite
+        //it instead
+        if(Constants.ccMap.get(key).size() > 100){
+            Constants.ccMap.get(key).clear();
         }
 
+        if (!Constants.ccMap.containsKey(key)) {
+            ArrayList<MedicalRecord> temp = new ArrayList();
+            temp.add(value);
+            Constants.ccMap.put(key, temp);
         }
+        Constants.ccMap.get(key).add(value);
+
+        return true;
+
+
+        }
+
+
 
 }
