@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba4b1da7-0010-4710-a7a3-dccb1dbb0d4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ReadWriteLock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ReadWriteLockHashMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/IdentifyingKey.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LibraryConcurrentHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/LibraryConcurrentHashMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MedicalRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MedicalRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MyConcurrentHashMap.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SimulatingReadAndWritesOfThreads.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SimulatingReadAndWritesOfThreads.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SingletonMyConcurrentHashMap.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -96,6 +100,11 @@
       <workItem from="1698152152083" duration="191000" />
       <workItem from="1698161649963" duration="768000" />
       <workItem from="1698162891066" duration="188000" />
+      <workItem from="1698189722148" duration="165000" />
+      <workItem from="1698258875074" duration="2071000" />
+      <workItem from="1698525562212" duration="599000" />
+      <workItem from="1698537166492" duration="1537000" />
+      <workItem from="1698701072545" duration="5250000" />
     </task>
     <servers />
   </component>
@@ -112,5 +121,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint type="java-exception">
+          <properties class="java.util.ConcurrentModificationException" package="java.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

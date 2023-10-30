@@ -32,33 +32,50 @@ public class LibraryConcurrentHashMap{
 
     }
 
-
-    public  ArrayList<MedicalRecord> read(NameAndDOB key){
-        return Constants.ccMap.get(key);
+    public static ArrayList<MedicalRecord> readFromMap(NameAndDOB nameAndDOB){
+        return Constants.ccMap.get(nameAndDOB);
     }
 
-    public boolean write(NameAndDOB key, MedicalRecord value){
+    public void writeToMap(NameAndDOB nameAndDOB, MedicalRecord medicalRecord){
 
 
-
-        //makes me run out of memory cause the hashmap gets too big with all the simulated data. we'll just overwrite
-        //it instead
-        if(Constants.ccMap.get(key).size() > 100){
-            Constants.ccMap.get(key).clear();
+        //memory safekeeping
+        if(Constants.ccMap.get(nameAndDOB).size() > Constants.MAX_NUM_RECORDS){
+            Constants.ccMap.get(nameAndDOB).clear();
         }
 
-        if (!Constants.ccMap.containsKey(key)) {
-            ArrayList<MedicalRecord> temp = new ArrayList();
-            temp.add(value);
-            Constants.ccMap.put(key, temp);
+        if(Constants.ccMap.containsKey(nameAndDOB)){
+            Constants.ccMap.get(nameAndDOB).add(medicalRecord);
         }
-        Constants.ccMap.get(key).add(value);
-
-        return true;
-
-
+        else{
+            Constants.ccMap.put(nameAndDOB, new ArrayList<>());
+            Constants.ccMap.get(nameAndDOB).add(medicalRecord);
         }
 
+    }
+
+    public static void obtainReport(ArrayList<MedicalRecord> records, NameAndDOB name){
+        Severity severity = Constants.getIndividualsRiskLevel(records);
+        System.out.println();
+        System.out.println("This is a report generated regarding the information pertitent to patient: "
+                + name.patientName() + " and this patients dats of birth: " + name.DOB());
+        System.out.println("This patient is a " + severity.name() + " risk ");
+        System.out.println("Cases this patient has had in the past are listed from most to least severe: ");
+        Constants.getMostSevereCases(records);
+        System.out.println("the patients average weight and height over the course of reports we've obtained is: "
+                + Constants.getAverageWeight(records) + "lbs, " + Constants.getAverageHeight(records) + " cm");
+        System.out.println("For more specific information and more detailed information, you must go through" +
+                " the files yourself");
+        System.out.println();
+
+    }
 
 
-}
+    }
+
+
+
+
+
+
+

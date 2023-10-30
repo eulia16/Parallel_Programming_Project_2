@@ -1,9 +1,11 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Constants {
 
@@ -20,8 +22,14 @@ public class Constants {
     public static final int numProcessors = Runtime.getRuntime().availableProcessors();
     public static final int numProcessorsHardcoded = 8;
 
-    public static final int highPercentageWriters = 50;
-    public static final int lowPercentageWriters = 5;
+    public static final int highPercentageWriters = 25;
+    public static final int lowPercentageOfReaders = 75;
+
+
+    public static final int highPercentageOfReaders = 99;
+    public static final int lowPercentageWriters = 1;
+
+    public static final int MAX_NUM_RECORDS = 20;
 
 
 
@@ -75,6 +83,63 @@ public class Constants {
             "Cardiac Catheterization",
             "Bronchoscopy"
     };
+
+
+    public static NameAndDOB getRandomTestData(){
+        return Constants.nameAndDOBArray[ThreadLocalRandom.current().nextInt(Constants.nameAndDOBArray.length-1)];
+    }
+    public static MedicalRecord getRandomMedicalRecord(){
+        return MedicalRecord.generateRandomMedicalRecord();
+    }
+
+
+    public static void getMostSevereCases(ArrayList<MedicalRecord> medicalRecords){
+        Collections.sort(medicalRecords, (record1, record2) ->
+                record2.severity().compareTo(record1.severity()));
+        System.out.println(medicalRecords);
+
+    }
+
+    public static Severity getIndividualsRiskLevel(ArrayList<MedicalRecord> medicalRecords){
+        int numSevere=0, numModerate=0, numLight=0, numNone=0;
+        for(MedicalRecord m : medicalRecords){
+            if(m.severity() == Severity.SEVERE)
+                numSevere++;
+            else if(m.severity() == Severity.MODERATE)
+                numModerate++;
+            else if(m.severity() == Severity.LIGHT)
+                numLight++;
+            else
+                numNone++;
+
+        }
+        if(numSevere + numModerate > numLight + numNone)
+            return Severity.SEVERE;
+        else if(numSevere + numNone < numModerate + numLight)
+            return  Severity.MODERATE;
+        else if(numSevere + numModerate < numLight + numNone )
+            return Severity.MODERATE;
+        else
+            return Severity.NONE;
+
+    }
+
+    public static double getAverageWeight(ArrayList<MedicalRecord> medicalRecords){
+        double average =0;
+        for(MedicalRecord m : medicalRecords){
+            average += m.weight();
+        }
+        return average / medicalRecords.size();
+
+    }
+    public static double getAverageHeight(ArrayList<MedicalRecord> medicalRecords){
+        double height =0;
+        for(MedicalRecord m : medicalRecords){
+            height += m.height();
+        }
+        return height / medicalRecords.size();
+
+    }
 
 
 }
