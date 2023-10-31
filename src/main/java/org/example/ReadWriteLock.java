@@ -61,7 +61,6 @@ public class ReadWriteLock {
                 }
             }
         }finally {
-
             lock.unlock();
         }
     }

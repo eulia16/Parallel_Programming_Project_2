@@ -15,7 +15,7 @@ import java.util.logging.*;
 import static org.example.LibraryConcurrentHashMap.obtainReport;
 
 
-@Threads(8)
+//@Threads(8)
 @OutputTimeUnit(TimeUnit.SECONDS)
 public class SimulatingReadAndWritesOfThreads {
 
@@ -30,7 +30,7 @@ public class SimulatingReadAndWritesOfThreads {
         public static FileHandler fileHandler;
 
         @Setup(Level.Iteration)
-        public void doSetup() throws IOException {
+        public void doSetup() throws IOException, InterruptedException {
             libCCMP = new LibraryConcurrentHashMap();
             RWHashMap = new ReadWriteLockHashMap();
             lock = new ReadWriteLock();
@@ -41,7 +41,6 @@ public class SimulatingReadAndWritesOfThreads {
             // Log a simple INFO message.
             //logger.info("Logger Initialized");
             libCCMP.setup();
-            //myCCMP.setup();
             System.out.println("Setup done");
         }
 
@@ -66,91 +65,93 @@ public class SimulatingReadAndWritesOfThreads {
 
     //High read low write testing of concurrent Hashmap
     //@Benchmark @BenchmarkMode(Mode.Throughput)
-    public void simulateCCHSMPLowWritersHighReaders(SomeDataToBeRead setupClass, Blackhole blackhole) {
-        //attempt a read, locking mechanisms are performed inside each function
-
-        NameAndDOB randomNAndDOB = Constants.getRandomTestData();
-        boolean isReader = false;
-        isReader = ThreadLocalRandom.current().nextInt(100) < Constants.highPercentageOfReaders;
-
-
-        if (isReader) {
-            ArrayList<MedicalRecord> temp = setupClass.libCCMP.readFromMap(randomNAndDOB);
-            obtainReport((ArrayList<MedicalRecord>) temp.clone(), randomNAndDOB);  //this will be the 'do something', it will sort reports on a sliding scale
-            blackhole.consume(temp);
-        }
-
-        boolean isWriter = false;
-        isWriter = ThreadLocalRandom.current().nextInt(100) < Constants.lowPercentageWriters;
-
-        if (isWriter) {
-            setupClass.libCCMP.writeToMap(Constants.getRandomTestData(), Constants.getRandomMedicalRecord());
-
-        }
-
-    }
+//    public void simulateCCHSMPLowWritersHighReaders(SomeDataToBeRead setupClass, Blackhole blackhole) {
+//        //attempt a read, locking mechanisms are performed inside each function
+//
+//        NameAndDOB randomNAndDOB = Constants.getRandomTestData();
+//        boolean isReader = false;
+//        isReader = ThreadLocalRandom.current().nextInt(100) < Constants.highPercentageOfReaders;
+//
+//        if (isReader) {
+//            ArrayList<MedicalRecord> temp = setupClass.libCCMP.readFromMap(randomNAndDOB);
+//            obtainReport((ArrayList<MedicalRecord>) temp.clone(), randomNAndDOB);  //this will be the 'do something', it will sort reports on a sliding scale
+//            blackhole.consume(temp);
+//        }
+//
+//        boolean isWriter = false;
+//        isWriter = ThreadLocalRandom.current().nextInt(100) < Constants.lowPercentageWriters;
+//
+//        if (isWriter) {
+//            setupClass.libCCMP.writeToMap(Constants.getRandomTestData(), Constants.getRandomMedicalRecord());
+//        }
+//
+//    }
 
     //High write low read testing of concurrent Hashmap
      //@Benchmark @BenchmarkMode(Mode.Throughput)
-    public void simulateCCHSMPHighWritersLowReaders(SomeDataToBeRead setupClass, Blackhole blackhole) {
-        //attempt a read, locking mechanisms are performed inside each function
-
-        NameAndDOB randomNAndDOB = Constants.getRandomTestData();
-        boolean isReader = false;
-        isReader = ThreadLocalRandom.current().nextInt(100) < Constants.lowPercentageOfReaders;
-
-
-        if (isReader) {
-            ArrayList<MedicalRecord> temp = setupClass.libCCMP.readFromMap(randomNAndDOB);
-            obtainReport((ArrayList<MedicalRecord>) temp.clone(), randomNAndDOB);  //this will be the 'do something', it will sort reports on a sliding scale
-        }
-
-        boolean isWriter = false;
-        isWriter = ThreadLocalRandom.current().nextInt(100) < Constants.highPercentageWriters;
-
-        if (isWriter) {
-            setupClass.libCCMP.writeToMap(Constants.getRandomTestData(), Constants.getRandomMedicalRecord());
-
-        }
-
-    }
+//    public void simulateCCHSMPHighWritersLowReaders(SomeDataToBeRead setupClass, Blackhole blackhole) {
+//        //attempt a read, locking mechanisms are performed inside each function
+//
+//        NameAndDOB randomNAndDOB = Constants.getRandomTestData();
+//        boolean isReader = false;
+//        isReader = ThreadLocalRandom.current().nextInt(100) < Constants.lowPercentageOfReaders;
+//
+//
+//        if (isReader) {
+//            ArrayList<MedicalRecord> temp = setupClass.libCCMP.readFromMap(randomNAndDOB);
+//            obtainReport((ArrayList<MedicalRecord>) temp.clone(), randomNAndDOB);  //this will be the 'do something', it will sort reports on a sliding scale
+//        }
+//
+//        boolean isWriter = false;
+//        isWriter = ThreadLocalRandom.current().nextInt(100) < Constants.highPercentageWriters;
+//
+//        if (isWriter) {
+//            setupClass.libCCMP.writeToMap(Constants.getRandomTestData(), Constants.getRandomMedicalRecord());
+//
+//        }
+//
+//    }
 
     /**
      * Read Write Locking HashMap benchmarking methods
      */
 
     //High read low write testing of read write lock
-    @Benchmark @BenchmarkMode(Mode.Throughput)
-    public void simulateReadWriteLockLowWritersHighReaders(SomeDataToBeRead setupClass, Blackhole blackhole) {
+     @Benchmark @BenchmarkMode(Mode.Throughput)@Threads(100)
+     public void simulateReadWriteLockLowWritersHighReaders(SomeDataToBeRead setupClass, Blackhole blackhole) {
+
         //attempt a read, locking mechanisms are performed inside each function
         NameAndDOB randomNAndDOB = Constants.getRandomTestData();
-        boolean isReader;
-        isReader =  ThreadLocalRandom.current().nextInt(100) < Constants.highPercentageOfReaders;
-
+        boolean isReader = true;
 
         if (isReader){
-            setupClass.lock.lockRead();
+            SomeDataToBeRead.lock.lockRead();
             try {
-                ArrayList<MedicalRecord> temp = setupClass.RWHashMap.getMedicalData(randomNAndDOB);
-                if(temp != null)
-                    obtainReport(temp, randomNAndDOB);  //this will be the 'do something', it will sort reports on a sliding scale
+                ArrayList<MedicalRecord> copy = SomeDataToBeRead.RWHashMap.getMedicalData(randomNAndDOB);
+
+                //instead of obtain report, we'll just compute the number of people inside the datastructure
+
+
+                System.out.println("Reading from hashmap");
+
+                ArrayList<MedicalRecord> temp = new ArrayList<>(setupClass.RWHashMap.getMedicalData(randomNAndDOB));
+                obtainReport(temp, randomNAndDOB);  //this will be the 'do something', it will sort reports on a sliding scale
             }
             finally {
                 setupClass.lock.unlockRead();
             }
-
         }
 
-
-
-
         boolean isWriter;
-        isWriter =  ThreadLocalRandom.current().nextInt(100) < Constants.lowPercentageWriters;
+        isWriter =  ThreadLocalRandom.current().nextInt(100) < 50;
         try{
             if(isWriter) {
                 setupClass.lock.lockWrite();
                 try {
-                    setupClass.RWHashMap.writeToMap(Constants.getRandomTestData(), Constants.getRandomMedicalRecord());
+                    final NameAndDOB randomPerson = Constants.getRandomTestData();
+                    final MedicalRecord randomMedicalRecord = Constants.getRandomMedicalRecord();
+                    setupClass.RWHashMap.writeToMap(randomPerson, randomMedicalRecord);
+                      System.out.println("");
                 }
                 catch(Exception e){
 
@@ -166,9 +167,9 @@ public class SimulatingReadAndWritesOfThreads {
 
     //High write low read testing of read write lock
     //@Benchmark @BenchmarkMode(Mode.Throughput)
-    public void simulateReadWriteLockHighWritersLowReaders(SomeDataToBeRead setupClass, Blackhole blackhole) {
-    setupClass.RWHashMap.performTask(Constants.lowPercentageOfReaders, Constants.highPercentageWriters);
-    }
+//    public void simulateReadWriteLockHighWritersLowReaders(SomeDataToBeRead setupClass, Blackhole blackhole) {
+//        //setupClass.RWHashMap.performTask(Constants.lowPercentageOfReaders, Constants.highPercentageWriters);
+//    }
 
 
 }

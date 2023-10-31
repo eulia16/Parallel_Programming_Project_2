@@ -12,23 +12,24 @@ import java.util.concurrent.TimeUnit;
 public class LibraryConcurrentHashMap{
 
     @Setup
-    public void setup(){
+    public void setup() throws InterruptedException {
         //initialize the ccMap with some data
         // Generate data and put it into the ConcurrentHashMap
-        for (int i = 0; i < Constants.NUM_RANDOM_DATA; i++) {
-            MedicalRecord record = MedicalRecord.generateRandomMedicalRecord();
-            int randomName =0, randomDOB=0;
-
-            randomName = ThreadLocalRandom.current().nextInt(Constants.listOfNames.length);
-            randomDOB = ThreadLocalRandom.current().nextInt(Constants.listOfDOBs.length);
-
-            NameAndDOB temp = new NameAndDOB(Constants.listOfNames[randomName], Constants.listOfDOBs[randomDOB]);
-            //put the randomly generated humans in the list
-            Constants.nameAndDOBArray[i] = temp;
-            //same but add them to the hashmap now
-            Constants.ccMap.put(temp, new ArrayList<>());
-            Constants.ccMap.get(temp).add(record);
+        int counter=0;
+        for(int i=0; i<10; ++i){
+            String name = Constants.listOfNames[i];
+            for(int j=0; j<10; ++j){
+                MedicalRecord record = MedicalRecord.generateRandomMedicalRecord();
+                String DOB = Constants.listOfDOBs[j];
+                NameAndDOB nameAndDOB = new NameAndDOB(name, DOB);
+                Constants.nameAndDOBArray[counter] = nameAndDOB;
+                //same but add them to the hashmap now
+                Constants.ccMap.put(nameAndDOB, new ArrayList<>());
+                Constants.ccMap.get(nameAndDOB).add(record);
+                counter++;
+            }
         }
+
 
     }
 
@@ -37,7 +38,6 @@ public class LibraryConcurrentHashMap{
     }
 
     public void writeToMap(NameAndDOB nameAndDOB, MedicalRecord medicalRecord){
-
 
         //memory safekeeping
         if(Constants.ccMap.get(nameAndDOB).size() > Constants.MAX_NUM_RECORDS){

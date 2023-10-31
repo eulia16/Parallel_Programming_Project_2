@@ -15,6 +15,7 @@ public class Constants {
       //public static final ExecutorService clients =  Executors.newFixedThreadPool(Constants.NUM_THREADS);
     public static ConcurrentHashMap<NameAndDOB, ArrayList<MedicalRecord> > ccMap = SingletonConcurrentHashmap.INSTANCE.getInstance();
     public static NameAndDOB[] nameAndDOBArray = new NameAndDOB[Constants.NUM_RANDOM_DATA];
+    public static ArrayList<NameAndDOB> nameAndDOBArrayList = new ArrayList<>();
     public static MedicalRecord[] medicalRecordsArray = new MedicalRecord[Constants.NUM_RANDOM_DATA];
 
     public static final int PERCENTAGE_OF_WRITER_THREADS = 5;//5 percent will be writer threads

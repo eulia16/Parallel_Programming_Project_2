@@ -22,4 +22,7 @@ public record MedicalRecord(Severity severity, int nurseID , int height, int wei
 
     }
 
+
+
+
 }
